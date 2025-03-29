@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+coverage/
+.env
+
+# yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
