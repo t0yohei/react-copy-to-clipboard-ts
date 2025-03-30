@@ -36,6 +36,11 @@
     "copy-to-clipboard",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t0yohei/react-copy-to-clipboard-ts.git"
+  },
+  "homepage": "https://github.com/t0yohei/react-copy-to-clipboard-ts.git",
   "author": "t0yohei <k.t0yohei@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
