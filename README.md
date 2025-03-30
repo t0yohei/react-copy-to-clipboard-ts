@@ -8,14 +8,6 @@ This package is a fork of [react-copy-to-clipboard](https://github.com/nkbt/reac
 - Zero dependencies (except `copy-to-clipboard`)
 - Simple and lightweight
 
-## Features
-
-- React 18 compatible
-- TypeScript support
-- ESM and CommonJS support
-- Zero dependencies (except `copy-to-clipboard`)
-- Simple and lightweight
-
 ## Installation
 
 ```bash
@@ -44,6 +36,10 @@ function App() {
 | ------ | --------------------------------------- | --------------------------------------------------------- |
 | text   | string                                  | Text to copy to clipboard                                 |
 | onCopy | (text: string, result: boolean) => void | Callback function that will be called when text is copied |
+
+## Simple web demo
+
+https://t0yohei.github.io/react-copy-to-clipboard-ts/
 
 ## Development
 
