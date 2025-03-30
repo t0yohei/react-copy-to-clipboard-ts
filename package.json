@@ -41,6 +41,9 @@
     "url": "git+https://github.com/t0yohei/react-copy-to-clipboard-ts.git"
   },
   "homepage": "https://github.com/t0yohei/react-copy-to-clipboard-ts.git",
+  "bugs": {
+    "url": "https://github.com/t0yohei/react-copy-to-clipboard-ts/issues"
+  },
   "author": "t0yohei <k.t0yohei@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
