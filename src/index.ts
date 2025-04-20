@@ -7,11 +7,16 @@ interface CopyToClipboardOptions {
   format?: string;
 }
 
+type ChildProps = {
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  [key: string]: unknown;
+};
+
 interface CopyToClipboardProps {
   text: string;
   onCopy?: (text: string, result: boolean) => void;
   options?: CopyToClipboardOptions;
-  children: React.ReactElement;
+  children: React.ReactElement<ChildProps>;
 }
 
 export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
@@ -22,8 +27,8 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
   ...props
 }) => {
   const onClick = React.useCallback(
-    (event: React.MouseEvent) => {
-      const elem = React.Children.only(children);
+    (event: React.MouseEvent<HTMLElement>) => {
+      const elem = React.Children.only(children) as React.ReactElement<ChildProps>;
       const result = copy(text, options);
 
       if (onCopy) {
@@ -31,13 +36,13 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
       }
 
       // Bypass onClick if it was present
-      if (elem?.props?.onClick && typeof elem.props.onClick === "function") {
+      if (elem.props.onClick && typeof elem.props.onClick === "function") {
         elem.props.onClick(event);
       }
     },
     [text, onCopy, options, children]
   );
 
-  const elem = React.Children.only(children);
-  return React.cloneElement(elem, { ...props, onClick });
+  const elem = React.Children.only(children) as React.ReactElement<ChildProps>;
+  return React.cloneElement(elem, { onClick, ...props });
 };
