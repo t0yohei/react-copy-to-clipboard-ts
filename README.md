@@ -2,7 +2,7 @@
 
 This package is a fork of [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard). The main differences are:
 
-- React 18 compatibility
+- React 18, 19 compatibility
 - TypeScript support
 - ESM and CommonJS support
 - Zero dependencies (except `copy-to-clipboard`)
