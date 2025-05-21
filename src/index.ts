@@ -1,18 +1,18 @@
 import * as React from "react";
 import copy from "copy-to-clipboard";
 
-interface CopyToClipboardOptions {
+export interface CopyToClipboardOptions {
   debug?: boolean;
   message?: string;
   format?: string;
 }
 
-type ChildProps = {
+export type ChildProps = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   [key: string]: unknown;
 };
 
-interface CopyToClipboardProps {
+export interface CopyToClipboardProps {
   text: string;
   onCopy?: (text: string, result: boolean) => void;
   options?: CopyToClipboardOptions;

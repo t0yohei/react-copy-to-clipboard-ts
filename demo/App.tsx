@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent } from "react";
-import { CopyToClipboard } from "../src";
+import { CopyToClipboard, type CopyToClipboardOptions, type CopyToClipboardProps, type ChildProps } from "../src";
 
-const onClick = (event: MouseEvent<HTMLButtonElement>) => {
+const onClick = (event: MouseEvent<HTMLElement>) => {
   console.log(`Clicked on "${event.currentTarget.innerHTML}"!`);
 };
 
@@ -14,8 +14,20 @@ const App: React.FC = () => {
     setCopied(false);
   };
 
-  const onCopy = () => {
+  const onCopy: CopyToClipboardProps["onCopy"] = (text, result) => {
+    console.log(`Copied text: ${text}, Success: ${result}`);
     setCopied(true);
+  };
+
+  const copyOptions: CopyToClipboardOptions = {
+    debug: true,
+    message: "Copied to clipboard.",
+    format: "text/plain"
+  };
+
+  const buttonProps: ChildProps = {
+    onClick,
+    style: { cursor: "pointer" }
   };
 
   return (
@@ -26,20 +38,20 @@ const App: React.FC = () => {
       </section>
       <section className="section">
         <h2>1. Button</h2>
-        <CopyToClipboard onCopy={onCopy} text={value}>
+        <CopyToClipboard onCopy={onCopy} text={value} options={copyOptions}>
           <button type="button">Copy to clipboard with button</button>
         </CopyToClipboard>
       </section>
       <section className="section">
         <h2>2. Span</h2>
-        <CopyToClipboard onCopy={onCopy} text={value}>
+        <CopyToClipboard onCopy={onCopy} text={value} options={copyOptions}>
           <span>Copy to clipboard with span</span>
         </CopyToClipboard>
       </section>
       <section className="section">
         <h2>3. with onClick</h2>
-        <CopyToClipboard onCopy={onCopy} text={value}>
-          <button type="button" onClick={onClick}>
+        <CopyToClipboard onCopy={onCopy} text={value} options={copyOptions}>
+          <button type="button" {...buttonProps}>
             Copy to clipboard with onClick prop
           </button>
         </CopyToClipboard>
