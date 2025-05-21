@@ -28,8 +28,8 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Run linting
-        run: yarn lint
+      - name: Run biome ci
+        run: yarn ci
 
       - name: Run type checking
         run: yarn tsc --noEmit
