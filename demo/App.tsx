@@ -1,12 +1,17 @@
-import React, { useState, MouseEvent } from "react";
-import { CopyToClipboard, type CopyToClipboardOptions, type CopyToClipboardProps, type ChildProps } from "../src";
+import React, { useState, MouseEvent } from 'react';
+import {
+  type ChildProps,
+  CopyToClipboard,
+  type CopyToClipboardOptions,
+  type CopyToClipboardProps,
+} from '../src';
 
 const onClick = (event: MouseEvent<HTMLElement>) => {
   console.log(`Clicked on "${event.currentTarget.innerHTML}"!`);
 };
 
 const App: React.FC = () => {
-  const [value, setValue] = useState("some\ntext");
+  const [value, setValue] = useState('some\ntext');
   const [copied, setCopied] = useState(false);
 
   const onChange = ({ target }: { target: { value: string } }) => {
@@ -14,20 +19,20 @@ const App: React.FC = () => {
     setCopied(false);
   };
 
-  const onCopy: CopyToClipboardProps["onCopy"] = (text, result) => {
+  const onCopy: CopyToClipboardProps['onCopy'] = (text, result) => {
     console.log(`Copied text: ${text}, Success: ${result}`);
     setCopied(true);
   };
 
   const copyOptions: CopyToClipboardOptions = {
     debug: true,
-    message: "Copied to clipboard.",
-    format: "text/plain"
+    message: 'Copied to clipboard.',
+    format: 'text/plain',
   };
 
   const buttonProps: ChildProps = {
     onClick,
-    style: { cursor: "pointer" }
+    style: { cursor: 'pointer' },
   };
 
   return (
@@ -57,10 +62,10 @@ const App: React.FC = () => {
         </CopyToClipboard>
       </section>
       <section className="section">
-        {copied ? <span style={{ color: "red" }}>Copied.</span> : null}
+        {copied ? <span style={{ color: 'red' }}>Copied.</span> : null}
       </section>
       <section className="section">
-        <textarea cols={22} rows={3} style={{ marginTop: "1em" }} />
+        <textarea cols={22} rows={3} style={{ marginTop: '1em' }} />
       </section>
     </div>
   );

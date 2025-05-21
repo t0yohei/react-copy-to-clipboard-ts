@@ -1,26 +1,26 @@
-import React from "react";
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { CopyToClipboard } from "../src";
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { describe, expect, it, vi } from 'vitest';
+import { CopyToClipboard } from '../src';
 
 // Mock copy-to-clipboard
-vi.mock("copy-to-clipboard", () => ({
+vi.mock('copy-to-clipboard', () => ({
   default: vi.fn().mockReturnValue(true),
 }));
 
-describe("CopyToClipboard", () => {
-  it("renders children correctly", () => {
+describe('CopyToClipboard', () => {
+  it('renders children correctly', () => {
     render(
       <CopyToClipboard text="test">
         <button type="button">Copy</button>
       </CopyToClipboard>
     );
 
-    expect(screen.getByRole("button")).toHaveTextContent("Copy");
+    expect(screen.getByRole('button')).toHaveTextContent('Copy');
   });
 
-  it("calls onCopy when clicked", async () => {
+  it('calls onCopy when clicked', async () => {
     const onCopy = vi.fn();
     render(
       <CopyToClipboard text="test" onCopy={onCopy}>
@@ -28,11 +28,11 @@ describe("CopyToClipboard", () => {
       </CopyToClipboard>
     );
 
-    await userEvent.click(screen.getByRole("button"));
-    expect(onCopy).toHaveBeenCalledWith("test", true);
+    await userEvent.click(screen.getByRole('button'));
+    expect(onCopy).toHaveBeenCalledWith('test', true);
   });
 
-  it("passes onClick to children if present", async () => {
+  it('passes onClick to children if present', async () => {
     const childOnClick = vi.fn();
     render(
       <CopyToClipboard text="test">
@@ -42,11 +42,11 @@ describe("CopyToClipboard", () => {
       </CopyToClipboard>
     );
 
-    await userEvent.click(screen.getByRole("button"));
+    await userEvent.click(screen.getByRole('button'));
     expect(childOnClick).toHaveBeenCalled();
   });
 
-  it("handles nested children correctly", async () => {
+  it('handles nested children correctly', async () => {
     const onCopy = vi.fn();
     render(
       <CopyToClipboard text="test" onCopy={onCopy}>
@@ -57,11 +57,11 @@ describe("CopyToClipboard", () => {
       </CopyToClipboard>
     );
 
-    await userEvent.click(screen.getByText("Click me"));
-    expect(onCopy).toHaveBeenCalledWith("test", true);
+    await userEvent.click(screen.getByText('Click me'));
+    expect(onCopy).toHaveBeenCalledWith('test', true);
   });
 
-  it("passes additional props to children", () => {
+  it('passes additional props to children', () => {
     render(
       <CopyToClipboard text="test">
         <button type="button" data-testid="test-button">
@@ -70,6 +70,6 @@ describe("CopyToClipboard", () => {
       </CopyToClipboard>
     );
 
-    expect(screen.getByTestId("test-button")).toBeInTheDocument();
+    expect(screen.getByTestId('test-button')).toBeInTheDocument();
   });
 });
