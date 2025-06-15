@@ -26,7 +26,7 @@
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check .",
-    "check:fix": "biome check --apply .",
+    "check:fix": "biome check --write .",
     "ci": "biome ci .",
     "demo:dev": "vite --config demo/vite.config.ts",
     "demo:build": "vite build --config demo/vite.config.ts",

@@ -1,5 +1,5 @@
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';

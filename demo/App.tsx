@@ -1,4 +1,5 @@
-import React, { useState, MouseEvent } from 'react';
+import type React from 'react';
+import { type MouseEvent, useState } from 'react';
 import {
   type ChildProps,
   CopyToClipboard,
