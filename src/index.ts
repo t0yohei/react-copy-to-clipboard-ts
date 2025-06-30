@@ -48,3 +48,6 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
   const elem = React.Children.only(children) as React.ReactElement<ChildProps>;
   return React.cloneElement(elem, { onClick, ...props });
 };
+
+// Default export for compatibility with the original react-copy-to-clipboard library
+export default CopyToClipboard;

@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { CopyToClipboard } from '../src';
+import CopyToClipboardDefault from '../src'; // Default import test
 
 // Mock copy-to-clipboard
 vi.mock('copy-to-clipboard', () => ({
@@ -17,7 +18,17 @@ describe('CopyToClipboard', () => {
       </CopyToClipboard>
     );
 
-    expect(screen.getByRole('button')).toHaveTextContent('Copy');
+    expect(screen.getByRole('button').textContent).toBe('Copy');
+  });
+
+  it('renders children correctly with default import', () => {
+    render(
+      <CopyToClipboardDefault text="test">
+        <button type="button">Copy Default</button>
+      </CopyToClipboardDefault>
+    );
+
+    expect(screen.getByRole('button').textContent).toBe('Copy Default');
   });
 
   it('calls onCopy when clicked', async () => {
@@ -26,6 +37,18 @@ describe('CopyToClipboard', () => {
       <CopyToClipboard text="test" onCopy={onCopy}>
         <button type="button">Copy</button>
       </CopyToClipboard>
+    );
+
+    await userEvent.click(screen.getByRole('button'));
+    expect(onCopy).toHaveBeenCalledWith('test', true);
+  });
+
+  it('calls onCopy when clicked (default import)', async () => {
+    const onCopy = vi.fn();
+    render(
+      <CopyToClipboardDefault text="test" onCopy={onCopy}>
+        <button type="button">Copy</button>
+      </CopyToClipboardDefault>
     );
 
     await userEvent.click(screen.getByRole('button'));
@@ -70,6 +93,10 @@ describe('CopyToClipboard', () => {
       </CopyToClipboard>
     );
 
-    expect(screen.getByTestId('test-button')).toBeInTheDocument();
+    expect(screen.getByTestId('test-button')).toBeDefined();
+  });
+
+  it('verifies named and default exports reference the same component', () => {
+    expect(CopyToClipboard).toBe(CopyToClipboardDefault);
   });
 });
