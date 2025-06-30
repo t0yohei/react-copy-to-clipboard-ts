@@ -19,7 +19,11 @@ yarn add react-copy-to-clipboard-ts
 ## Usage
 
 ```tsx
+// Named import (recommended)
 import { CopyToClipboard } from "react-copy-to-clipboard-ts";
+
+// Default import (for migration from react-copy-to-clipboard)
+import CopyToClipboard from "react-copy-to-clipboard-ts";
 
 function App() {
   return (
